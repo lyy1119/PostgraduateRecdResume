@@ -1,0 +1,468 @@
+\documentclass[10pt, a4paper, oneside]{ctexart}
+% 导入包 %
+\usepackage[
+    paper=a4paper,
+    left=1.5cm,
+    right=1.5cm,
+    top=1.5cm,
+    bottom=1.5cm
+]{geometry}
+\usepackage{luacode} % 支持lua %
+\usepackage{graphicx}  % 处理图片
+\usepackage{float}
+\usepackage[absolute,overlay]{textpos}  % 启用绝对定位
+\usepackage{array}
+
+\begin{document}
+\pagenumbering{gobble}
+\setlength{\parindent}{0pt}
+
+% lua %
+\begin{luacode}
+-- 使用lua读取，这样方便修改
+local json = dofile("dkjson.lua")  -- 需要 lua-cjson 或 lualatex-platform 支持
+local file = io.open("data.json", "r")
+local content = file:read("*all")
+file:close()
+local data = json.decode(content)
+
+-- 一些格式设置
+local settings = data.settings
+tex.print("\\gdef\\lineSize{" .. settings.horizonlineSize .. "}")
+-- 是否渲染的设置
+if settings.noUniversityBadge then
+    tex.print("\\gdef\\noUniversityBadge{1}")
+end
+if settings.basicInfo then
+    tex.print("\\gdef\\basicInfo{1}")
+end
+if settings.educationBackground then
+    tex.print("\\gdef\\educationBackground{1}")
+end
+if settings.scientificResearch then
+    tex.print("\\gdef\\scientificResearch{1}")
+end
+if settings.patent then
+    tex.print("\\gdef\\patent{1}")
+end
+if settings.contest then
+    tex.print("\\gdef\\contest{1}")
+end
+if settings.certificate then
+    tex.print("\\gdef\\certificate{1}")
+end
+if settings.otherSkill then
+    tex.print("\\gdef\\otherSkill{1}")
+end
+if settings.studentJob then
+    tex.print("\\gdef\\studentJob{1}")
+end
+
+tex.print("\\gdef\\myname{" .. data.name .. "}") 
+tex.print("\\gdef\\mytitle{" .. data.title .. "}")
+tex.print("\\gdef\\target{" .. data.target .. "}")
+-- 个人信息
+personalInfo = data.personalInfo
+tex.print("\\gdef\\figure{" .. personalInfo.figure .. "}")
+tex.print("\\gdef\\tel{" .. personalInfo.tel .. "}")
+tex.print("\\gdef\\email{" .. personalInfo.email .. "}")
+tex.print("\\gdef\\gender{" .. personalInfo.gender .. "}")
+tex.print("\\gdef\\birthday{" .. personalInfo.birthday .. "}")
+tex.print("\\gdef\\tel{" .. personalInfo.tel .. "}")
+tex.print("\\gdef\\nationality{" .. personalInfo.nationality .. "}")
+tex.print("\\gdef\\ancestralHomeland{" .. personalInfo.ancestralHomeland .. "}")
+tex.print("\\gdef\\politicStatue{" .. personalInfo.politicStatue .. "}")
+-- 教育背景
+local edu = data.educationBackground
+tex.print("\\gdef\\UniversityBadge{" .. edu.badge .. "}")
+tex.print("\\gdef\\university{" .. edu.university .. "}")
+tex.print("\\gdef\\major{" .. edu.major .. "}")
+tex.print("\\gdef\\level{" .. edu.level .. "}")
+tex.print("\\gdef\\gpa{" .. edu.gpa .. "}")
+tex.print("\\gdef\\grade{" .. edu.grade .. "}")
+tex.print("\\gdef\\rank{" .. edu.rank .. "}")
+-- 英语水平
+local engLevel = data.english
+tex.print("\\gdef\\cetIV{" .. engLevel.cet4 .. "}")
+tex.print("\\gdef\\cetVI{" .. engLevel.cet6 .. "}")
+
+\end{luacode}
+
+% 校徽、姓名、联系方式、大头照 %
+\begin{center}
+    \begin{minipage}[t][6em]{1\textwidth}
+        \ifdefined\noUniversityBadge
+            \hspace{2em}
+            {\Huge \textbf{\myname·\mytitle}}\\[1ex]
+        \else
+            % 姓名
+            \begin{center}
+                {\Huge \textbf{\myname}}\\[1ex]
+            \end{center}
+            % 校徽
+            % 设置一个 10cm x 10cm 的图片，左边距 2cm，上边距 5cm
+            \begin{textblock*}{3cm}(1cm,0.5cm)  % {宽度}(左边距, 上边距)
+                \includegraphics[width=3cm]{\UniversityBadge}  % 图片宽度设为 50% 文档宽度
+            \end{textblock*}
+        \fi
+        % 大头照
+        \begin{textblock*}{2.5cm}(16.5cm,0.5cm)  % {宽度}(左边距, 上边距)
+            \includegraphics[width=2.5cm]{\figure}  % 图片宽度设为 50% 文档宽度
+        \end{textblock*}
+        % 联系方式
+        \vfil
+        \begin{center}
+            \begin{minipage}{1\textwidth}
+                \centering
+                \begin{minipage}{0.5\linewidth}
+                    \textbf{Tel:} \tel
+                \end{minipage}
+                \hfill\begin{minipage}{0.5\linewidth}
+                    \textbf{Email:} \email
+                \end{minipage}
+            \end{minipage}
+        \end{center}
+    \end{minipage}\\[1em]
+\end{center}
+
+\ifdefined\basicInfo
+% 基本信息
+\begin{minipage}{1\textwidth}
+    \large{\textbf{基本信息}}
+\end{minipage}
+\rule{\linewidth}{\lineSize}
+\begin{center}
+    \begin{minipage}{0.8\textwidth}
+        \begin{tabular}{@{}l p{3cm} @{\hskip 20pt} l l l l@{}}
+        \textbf{性\hspace{2em}别：} &   \gender & \textbf{民族：} &   \nationality & \textbf{政治面貌：} &   \politicStatue \\
+        \textbf{出生年月：}    &   \birthday & \textbf{籍贯：} &   \ancestralHomeland & \textbf{求学意向：} &   \target \\
+    \end{tabular}
+    \end{minipage}
+\end{center}
+\fi
+
+\ifdefined\educationBackground
+% 教育背景
+\begin{minipage}{1\textwidth}
+    \large{\textbf{教育背景}}
+\end{minipage}
+\rule{\linewidth}{\lineSize}
+\begin{center}
+    % 最外层，指定宽度
+    \begin{minipage}{0.9\textwidth}
+        % 学校和专业
+        \begin{minipage}{0.6\linewidth}
+            \university
+            \hspace{2em}
+            \textbf{\level}
+            \hfil
+        \end{minipage}
+        \begin{minipage}{0.3\linewidth}
+            \raggedright
+            \textbf{专业}： \major
+            \hfil
+        \end{minipage} \\
+        % GPA、加权、排名
+        \begin{minipage}{0.3\linewidth}
+            \textbf{GPA}： \gpa \hfil
+        \end{minipage}
+        \begin{minipage}{0.3\linewidth}
+            \textbf{加权成绩}： \grade \hfil
+        \end{minipage}
+        \begin{minipage}{0.3\linewidth}
+            \raggedright
+            \textbf{排名}： \rank \hfil
+        \end{minipage} \\
+        % 英语水平
+        \begin{minipage}{0.5\linewidth}
+            \textbf{英语水平}： 
+            \hspace{1em}
+            \textbf{CET-4}： \cetIV \hspace{2em}
+            \textbf{CET-6}： \cetVI \hfil
+        \end{minipage} \\[0.8em]
+        % 课程成绩
+        \begin{minipage}{1\linewidth}
+            \textbf{核心课程成绩}：
+            \vspace{-2em}
+            \begin{center}
+                \begin{luacode}
+                    -- 假设 JSON 数据
+                    -- 使用lua读取，这样方便修改
+                    local json = dofile("dkjson.lua")  -- 需要 lua-cjson 或 lualatex-platform 支持
+                    local file = io.open("data.json", "r")
+                    local content = file:read("*all")
+                    file:close()
+                    local data = json.decode(content)
+                    local courses = data.educationBackground.courses
+                    local cols = 3  -- 每行 3 列
+                    local count = #courses
+                    tex.print("\\begin{tabular}{lll}")  -- 定义 3 列表格
+                    -- tex.print("\\hline")  -- 画横线
+                    for i = 1, count, cols do
+                        local row = {}
+                        for j = 0, cols - 1 do
+                            local index = i + j
+                            if index <= count then
+                                table.insert(row, courses[index][1] .. "(" .. courses[index][2] .. ")")
+                            else
+                                table.insert(row, "")  -- 补空白
+                            end
+                        end
+                        tex.print(table.concat(row, " & ") .. " \\\\")  -- 拼接成 LaTeX 格式
+                        -- tex.print("\\hline")
+                    end
+                    tex.print("\\end{tabular}")
+                \end{luacode}
+            \end{center}
+        \end{minipage}
+    \end{minipage}
+\end{center}
+\fi
+
+\ifdefined\scientificResearch
+% 科研经历
+\begin{minipage}{1\textwidth}
+    \large{\textbf{科研经历}}
+\end{minipage}
+\rule{\linewidth}{\lineSize}
+\begin{center}
+    \begin{minipage}{0.9\textwidth}
+        \begin{luacode}
+            local json = dofile("dkjson.lua")  -- 需要 lua-cjson 或 lualatex-platform 支持
+            local file = io.open("data.json", "r")
+            local content = file:read("*all")
+            file:close()
+            local data = json.decode(content)
+            local sR = data.scientificResearch
+            for _ , i in ipairs(sR) do
+                tex.print("\\begin{minipage}{1\\textwidth}")
+
+                -- 项目名
+                tex.print("\\begin{minipage}{0.5\\linewidth}")
+                tex.print("\\raggedright")
+                tex.print("\\textbf{" .. i.project .. "}")
+                -- tex.print("\\hfil")
+                tex.print("\\end{minipage}")
+                -- 备注
+                tex.print("\\begin{minipage}{0.2\\linewidth}")
+                tex.print("\\centering")
+                tex.print(i.remark)
+                -- tex.print("\\hfil")
+                tex.print("\\end{minipage}")
+                -- 时间
+                tex.print("\\begin{minipage}{0.2\\linewidth}")
+                tex.print("\\raggedright")
+                tex.print(i.time)
+                -- tex.print("\\hfil")
+                tex.print("\\end{minipage}")
+
+                tex.print("\\\\[0.8em]")
+
+                -- 项目内容
+                tex.print("\\begin{minipage}{1\\linewidth}")
+                tex.print("\\raggedright")
+                tex.print("- 项目内容：" .. i.content)
+                tex.print("\\hfil")
+                tex.print("\\end{minipage}")
+
+                tex.print("\\\\[0.8em]")
+
+                -- 负责内容
+                tex.print("\\begin{minipage}{1\\linewidth}")
+                tex.print("\\raggedright")
+                tex.print("- 负责内容：" .. i.duty)
+                tex.print("\\hfil")
+                tex.print("\\end{minipage}")
+                tex.print("\\\\[0.8em]")
+
+                if i.result then
+                    -- 项目成果
+                    tex.print("\\begin{minipage}{1\\linewidth}")
+                    tex.print("\\raggedright")
+                    tex.print("- 项目成果：" .. i.result)
+                    tex.print("\\hfil")
+                    tex.print("\\end{minipage}")
+                end
+
+                tex.print("\\end{minipage}")
+                tex.print("\\\\[1em]")
+            end
+        \end{luacode}
+    \end{minipage}
+\end{center}
+\fi
+
+\ifdefined\patent
+% 专利
+\begin{minipage}{1\textwidth}
+    \large{\textbf{科研创新}}
+\end{minipage}
+\rule{\linewidth}{\lineSize}
+\begin{center}
+    \begin{minipage}{0.9\textwidth}
+        \begin{luacode}
+             local json = dofile("dkjson.lua")  -- 需要 lua-cjson 或 lualatex-platform 支持
+            local file = io.open("data.json", "r")
+            local content = file:read("*all")
+            file:close()
+            local data = json.decode(content)
+            local patents = data.patent
+            for _ , patent in ipairs(patents) do
+                tex.print("\\begin{minipage}{1\\linewidth}")
+
+                -- 专利名称
+                tex.print("\\begin{minipage}{0.6\\linewidth}")
+                tex.print("\\raggedright")
+                tex.print("- " .. patent[1])
+                tex.print("\\hfil")
+                tex.print("\\end{minipage}")
+
+                -- 专利号
+                tex.print("\\begin{minipage}{0.3\\linewidth}")
+                tex.print("\\raggedright")
+                tex.print(patent[2])
+                tex.print("\\hfil")
+                tex.print("\\end{minipage}")
+
+                tex.print("\\end{minipage}\\\\[0.5em]")
+            end
+        \end{luacode}
+    \end{minipage}
+\end{center}
+\fi
+
+\ifdefined\contest
+% 竞赛经历
+\begin{minipage}{1\textwidth}
+    \large{\textbf{竞赛经历}}
+\end{minipage}
+\rule{\linewidth}{\lineSize}
+\begin{center}
+    \begin{minipage}{0.9\textwidth}
+        \begin{luacode}
+            local json = dofile("dkjson.lua")  -- 需要 lua-cjson 或 lualatex-platform 支持
+            local file = io.open("data.json", "r")
+            local content = file:read("*all")
+            file:close()
+            local data = json.decode(content)
+            local contests = data.contest
+            for _ , contest in ipairs(contests) do
+                tex.print("\\begin{minipage}{1\\linewidth}")
+
+                -- 竞赛时间及名称
+                tex.print("\\begin{minipage}{0.8\\linewidth}")
+                tex.print(" - " .. contest[1])
+                tex.print("\\hfil")
+                tex.print("\\end{minipage}")
+
+                -- 竞赛等级
+                tex.print("\\begin{minipage}{0.1\\linewidth}")
+                tex.print(contest[2])
+                tex.print("\\end{minipage}")
+
+                tex.print("\\end{minipage}\\\\[0.5em]")
+            end
+        \end{luacode}
+    \end{minipage}
+\end{center}
+\fi
+
+\ifdefined\certificate
+% 荣誉奖项
+\begin{minipage}{1\textwidth}
+    \large{\textbf{荣誉奖项}}
+\end{minipage}
+\rule{\linewidth}{\lineSize}
+\begin{center}
+    \begin{minipage}{0.9\textwidth}
+        \begin{luacode}
+            local json = dofile("dkjson.lua")  -- 需要 lua-cjson 或 lualatex-platform 支持
+            local file = io.open("data.json", "r")
+            local content = file:read("*all")
+            file:close()
+            local data = json.decode(content)
+            local certificates = data.certificate
+            for _ , certificate in ipairs(certificates) do
+                tex.print("\\begin{minipage}{1\\linewidth}")
+
+                -- 获奖名
+                tex.print("\\begin{minipage}{0.8\\linewidth}")
+                tex.print(" - " .. certificate[1])
+                tex.print("\\hfil")
+                tex.print("\\end{minipage}")
+
+                -- 获奖时间
+                tex.print("\\begin{minipage}{0.1\\linewidth}")
+                tex.print(certificate[2])
+                tex.print("\\end{minipage}")
+
+                tex.print("\\end{minipage}\\\\[0.5em]")
+            end
+        \end{luacode}
+    \end{minipage}
+\end{center}
+\fi
+
+\ifdefined\otherSkill
+% 基本技能
+\begin{minipage}{1\textwidth}
+    \large{\textbf{基本技能}}
+\end{minipage}
+\rule{\linewidth}{\lineSize}
+\begin{center}
+    \begin{minipage}{0.9\textwidth}
+        \begin{luacode}
+            local json = dofile("dkjson.lua")  -- 需要 lua-cjson 或 lualatex-platform 支持
+            local file = io.open("data.json", "r")
+            local content = file:read("*all")
+            file:close()
+            local data = json.decode(content)
+            local skills = data.otherSkill
+            for _ , skill in ipairs(skills) do
+                tex.print("\\begin{minipage}{1\\linewidth}")
+                tex.print(" - " .. skill[1] .. "：" .. skill[2])
+                tex.print("\\end{minipage}\\\\[0.5em]")
+            end
+        \end{luacode}
+    \end{minipage}
+\end{center}
+\fi
+
+\ifdefined\studentJob
+% 学生工作
+\begin{minipage}{1\textwidth}
+    \large{\textbf{学生工作}}
+\end{minipage}
+\rule{\linewidth}{\lineSize}
+\begin{center}
+    \begin{minipage}{0.9\textwidth}
+        \begin{luacode}
+            local json = dofile("dkjson.lua")  -- 需要 lua-cjson 或 lualatex-platform 支持
+            local file = io.open("data.json", "r")
+            local content = file:read("*all")
+            file:close()
+            local data = json.decode(content)
+            local jobs = data.studentJob
+            for _ , job in ipairs(jobs) do
+                tex.print("\\begin{minipage}{1\\linewidth}")
+
+                -- 时间段
+                tex.print("\\begin{minipage}{0.4\\linewidth}")
+                tex.print("- " .. job[1])
+                tex.print("\\hfil")
+                tex.print("\\end{minipage}")
+
+                -- 内容
+                tex.print("\\begin{minipage}{0.5\\linewidth}")
+                tex.print("\\raggedright")
+                tex.print(job[2])
+                tex.print("\\end{minipage}")
+
+                tex.print("\\end{minipage}\\\\[0.5em]")
+            end
+        \end{luacode}
+    \end{minipage}
+\end{center}
+\fi
+
+\end{document}
