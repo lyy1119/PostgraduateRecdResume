@@ -57,6 +57,9 @@ end
 if settings.studentJob then
     tex.print("\\gdef\\studentJob{1}")
 end
+if settings.personalPhoto then
+    tex.print("\\gdef\\personalPhoto{1}")
+end
 
 tex.print("\\gdef\\myname{" .. data.name .. "}") 
 tex.print("\\gdef\\mytitle{" .. data.title .. "}")
@@ -106,9 +109,11 @@ tex.print("\\gdef\\cetVI{" .. engLevel.cet6 .. "}")
             \end{textblock*}
         \fi
         % 大头照
+        \ifdefined\personalPhoto
         \begin{textblock*}{2.5cm}(16.5cm,0.5cm)  % {宽度}(左边距, 上边距)
             \includegraphics[width=2.5cm]{\figure}  % 图片宽度设为 50% 文档宽度
         \end{textblock*}
+        \fi
         % 联系方式
         \vfil
         \begin{center}

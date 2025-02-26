@@ -1,5 +1,6 @@
 {
     "settings" :{
+        "personalPhoto"       : true,
         "noUniversityBadge"   : false,
         "horizonlineSize"     : "0.5pt",
         "basicInfo"           : true  ,
