@@ -60,6 +60,15 @@ end
 if settings.personalPhoto then
     tex.print("\\gdef\\personalPhoto{1}")
 end
+if settings.showCET4 then
+    tex.print("\\gdef\\showCETiv{1}")
+end
+if settings.showCET6 then
+    tex.print("\\gdef\\showCETvi{1}")
+end
+if settings.showEngLevel then
+    tex.print("\\gdef\\showEngLevel{1}")
+end
 
 tex.print("\\gdef\\myname{" .. data.name .. "}") 
 tex.print("\\gdef\\mytitle{" .. data.title .. "}")
@@ -86,8 +95,12 @@ tex.print("\\gdef\\grade{" .. edu.grade .. "}")
 tex.print("\\gdef\\rank{" .. edu.rank .. "}")
 -- 英语水平
 local engLevel = data.english
-tex.print("\\gdef\\cetIV{" .. engLevel.cet4 .. "}")
-tex.print("\\gdef\\cetVI{" .. engLevel.cet6 .. "}")
+if engLevel.cet4 ~= "" then
+    tex.print("\\gdef\\cetIV{" .. engLevel.cet4 .. "}")
+end
+if engLevel.cet6 ~= "" then
+    tex.print("\\gdef\\cetVI{" .. engLevel.cet6 .. "}")
+end
 
 \end{luacode}
 
@@ -179,12 +192,19 @@ tex.print("\\gdef\\cetVI{" .. engLevel.cet6 .. "}")
             \textbf{排名}： \rank \hfil
         \end{minipage} \\
         % 英语水平
+        \ifdefined\showEngLevel
         \begin{minipage}{0.5\linewidth}
-            \textbf{英语水平}： 
+            \textbf{英语水平}：
             \hspace{1em}
-            \textbf{CET-4}： \cetIV \hspace{2em}
-            \textbf{CET-6}： \cetVI \hfil
+            \ifdefined\showCETiv
+            \textbf{CET-4} \ifdefined\cetIV ： \cetIV \fi \hspace{2em}
+            \fi
+            \ifdefined\showCETvi
+            \textbf{CET-6} \ifdefined\cetVI ： \cetVI \fi \hfil
+            \fi
         \end{minipage} \\[0.8em]
+        \fi
+
         % 课程成绩
         \begin{minipage}{1\linewidth}
             \textbf{核心课程成绩}：

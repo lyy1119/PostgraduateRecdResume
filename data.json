@@ -1,6 +1,9 @@
 {
     "settings" :{
-        "personalPhoto"       : true,
+        "showEngLevel"        : true,
+        "showCET4"            : true,
+        "showCET6"            : true,
+       "personalPhoto"        : true,
         "noUniversityBadge"   : false,
         "horizonlineSize"     : "0.5pt",
         "basicInfo"           : true  ,
@@ -43,7 +46,7 @@
     },
     "english" : {
         "cet4" : "600",
-        "cet6" : "600"
+        "cet6" : ""
     },
     "scientificResearch" : [
         {
