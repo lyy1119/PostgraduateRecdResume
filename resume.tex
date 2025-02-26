@@ -69,6 +69,9 @@ end
 if settings.showEngLevel then
     tex.print("\\gdef\\showEngLevel{1}")
 end
+if settings.qualified then
+    tex.print("\\gdef\\qualified{1}")
+end
 
 tex.print("\\gdef\\myname{" .. data.name .. "}") 
 tex.print("\\gdef\\mytitle{" .. data.title .. "}")
@@ -181,15 +184,15 @@ end
             \hfil
         \end{minipage} \\
         % GPA、加权、排名
-        \begin{minipage}{0.3\linewidth}
+        \begin{minipage}{0.2\linewidth}
             \textbf{GPA}： \gpa \hfil
         \end{minipage}
-        \begin{minipage}{0.3\linewidth}
+        \begin{minipage}{0.2\linewidth}
             \textbf{加权成绩}： \grade \hfil
         \end{minipage}
-        \begin{minipage}{0.3\linewidth}
+        \begin{minipage}{0.5\linewidth}
             \raggedright
-            \textbf{排名}： \rank \hfil
+            \textbf{排名}： \rank \ifdefined\qualified \hspace{2em} \textbf{已确认获取保研资格} \fi  \hfil
         \end{minipage} \\
         % 英语水平
         \ifdefined\showEngLevel
