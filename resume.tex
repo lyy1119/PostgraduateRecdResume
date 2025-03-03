@@ -12,6 +12,7 @@
 \usepackage{float}
 \usepackage[absolute,overlay]{textpos}  % 启用绝对定位
 \usepackage{array}
+\usepackage{url}
 
 \begin{document}
 \pagenumbering{gobble}
@@ -80,7 +81,6 @@ tex.print("\\gdef\\target{" .. data.target .. "}")
 personalInfo = data.personalInfo
 tex.print("\\gdef\\figure{" .. personalInfo.figure .. "}")
 tex.print("\\gdef\\tel{" .. personalInfo.tel .. "}")
-tex.print("\\gdef\\email{" .. personalInfo.email .. "}")
 tex.print("\\gdef\\gender{" .. personalInfo.gender .. "}")
 tex.print("\\gdef\\birthday{" .. personalInfo.birthday .. "}")
 tex.print("\\gdef\\tel{" .. personalInfo.tel .. "}")
@@ -139,7 +139,18 @@ end
                     \textbf{Tel:} \tel
                 \end{minipage}
                 \hfill\begin{minipage}{0.5\linewidth}
-                    \textbf{Email:} \email
+                    \textbf{Email:}
+                    \begin{luacode}
+                        local json = dofile("dkjson.lua")  -- 需要 lua-cjson 或 lualatex-platform 支持
+                        local file = io.open("data.json", "r")
+                        local content = file:read("*all")
+                        file:close()
+                        local data = json.decode(content)
+                        personalInfo = data.personalInfo
+                        if personalInfo.email then
+                            tex.print("\\url{" .. personalInfo.email .. "}")
+                        end
+                    \end{luacode}
                 \end{minipage}
             \end{minipage}
         \end{center}
