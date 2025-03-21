@@ -1,7 +1,15 @@
 CC  = lualatex
 OBJ = resume.tex
 LOG = *.aux *.log
-RM  = del
+OS := $(shell uname -s)
+
+ifeq ($(OS),Linux)
+    RM := rm
+else ifneq (,$(findstring MSYS,$(OS)))
+    RM := rm
+else
+    RM := del
+endif
 TAR = resume.pdf
 
 default: compile .clean
