@@ -14,7 +14,8 @@
         "contest"             : true ,
         "certificate"         : true ,
         "otherSkill"          : true ,
-        "studentJob"          : true
+        "studentJob"          : true ,
+        "selfEvaluate"        : true
     },
     "name"     : "姓名",
     "title"    : "个人简历",
@@ -77,5 +78,9 @@
     ],
     "studentJob":[
         ["YYYY.MM - YYYY.MM" , "学生会xxx，主要负责xxx"]
+    ],
+    "selfEvaluate":[
+        "自我评价1" ,
+        "自我评价2 在这里写你对自己的评价即可，一个元素对应一行"
     ]
 }

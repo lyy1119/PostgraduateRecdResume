@@ -73,6 +73,9 @@ end
 if settings.qualified then
     tex.print("\\gdef\\qualified{1}")
 end
+if settings.selfEvaluate then
+    tex.print("\\gdef\\selfEvaluate{1}")
+end
 
 tex.print("\\gdef\\myname{" .. data.name .. "}") 
 tex.print("\\gdef\\mytitle{" .. data.title .. "}")
@@ -496,6 +499,33 @@ end
                 tex.print("\\raggedright")
                 tex.print(job[2])
                 tex.print("\\end{minipage}")
+
+                tex.print("\\end{minipage}\\\\[0.5em]")
+            end
+        \end{luacode}
+    \end{minipage}
+\end{center}
+\fi
+
+\ifdefined\selfEvaluate
+% 自我评价
+\begin{minipage}{1\textwidth}
+    \large{\textbf{自我评价}}
+\end{minipage}
+\rule{\linewidth}{\lineSize}
+\begin{center}
+    \begin{minipage}{0.9\textwidth}
+        \begin{luacode}
+            local json = dofile("dkjson.lua")  -- 需要 lua-cjson 或 lualatex-platform 支持
+            local file = io.open("data.json", "r")
+            local content = file:read("*all")
+            file:close()
+            local data = json.decode(content)
+            local evaluate = data.selfEvaluate
+            for _ , text in ipairs(evaluate) do
+                tex.print("\\begin{minipage}{1\\linewidth}")
+
+                tex.print(" - " .. text)
 
                 tex.print("\\end{minipage}\\\\[0.5em]")
             end

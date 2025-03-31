@@ -34,7 +34,8 @@ tex文件使用`lualatex`编译，通过luacode，将内容和排版格式分离
         "contest"             : true , \\ 展示竞赛经历
         "certificate"         : true , \\ 展示获奖（除竞赛奖）
         "otherSkill"          : true , \\ 展示其他技能，比如会什么软件
-        "studentJob"          : true \\ 展示学生工作经历
+        "studentJob"          : true ,\\ 展示学生工作经历
+        "selfEvaluate"        : true \\ 展示自我评价
     },
     "name"     : "姓名",
     "title"    : "个人简历",   \\ 不用改
@@ -97,6 +98,10 @@ tex文件使用`lualatex`编译，通过luacode，将内容和排版格式分离
     ],
     "studentJob":[  \\ 写法如下
         ["YYYY.MM - YYYY.MM" , "学生会xxx，主要负责xxx"]
+    ],
+    "selfEvaluate":[
+        "自我评价1" ,
+        "自我评价2 在这里写你对自己的评价即可，一个元素对应一行"
     ]
 }
 ```
