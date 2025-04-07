@@ -3,6 +3,19 @@
 
 dkjson.lua来自[GitHub repo](https://github.com/LuaDist/dkjson)  
 
+[效果演示](#模板效果) | [说明](#说明) | [使用方法](#使用方法) | [功能详解](#功能详解) | [常见问题](#问题)
+
+## 模板效果
+
+**注意** : 保研简历最好控制在一页，示例为了展示所有功能，超过了一页。  
+
+**声明:示例所用信息均为虚假信息，与本人无关**
+
+page1  
+![resume_1](https://raw.githubusercontent.com/lyy1119/Imgs/main/img/resume_1.png)  
+page2  
+![resume_2](https://raw.githubusercontent.com/lyy1119/Imgs/main/img/resume_2.png)
+
 ## 说明
 
 tex文件使用`lualatex`编译，通过luacode，将内容和排版格式分离，只需要修改json中的内容即可。生成的模块可选择性开启，通过修改`data.json`中的settings，可选择是否输出相应内容，以及更改水平线粗细。  
