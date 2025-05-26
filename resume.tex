@@ -300,32 +300,14 @@ end
 
                 tex.print("\\\\[0.8em]")
 
-                -- 项目内容
-                tex.print("\\begin{minipage}{1\\linewidth}")
-                tex.print("\\raggedright")
-                tex.print("- 项目内容：" .. i.content)
-                tex.print("\\hfil")
-                tex.print("\\end{minipage}")
-
-                tex.print("\\\\[0.8em]")
-
-                -- 负责内容
-                tex.print("\\begin{minipage}{1\\linewidth}")
-                tex.print("\\raggedright")
-                tex.print("- 负责内容：" .. i.duty)
-                tex.print("\\hfil")
-                tex.print("\\end{minipage}")
-                tex.print("\\\\[0.8em]")
-
-                if i.result then
-                    -- 项目成果
+                -- 使用列表代替，方便写课程设计等
+                for _ , detail in ipairs(i.detail) do
                     tex.print("\\begin{minipage}{1\\linewidth}")
                     tex.print("\\raggedright")
-                    tex.print("- 项目成果：" .. i.result)
+                    tex.print("- " .. detail[1] .. "：" .. detail[2])
                     tex.print("\\hfil")
                     tex.print("\\end{minipage}")
                 end
-
                 tex.print("\\end{minipage}")
                 tex.print("\\\\[1em]")
             end
