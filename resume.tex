@@ -13,6 +13,8 @@
 \usepackage[absolute,overlay]{textpos}  % 启用绝对定位
 \usepackage{array}
 \usepackage{url}
+\usepackage{fontawesome5}
+
 
 \begin{document}
 \pagenumbering{gobble}
@@ -76,6 +78,10 @@ end
 if settings.selfEvaluate then
     tex.print("\\gdef\\selfEvaluate{1}")
 end
+if settings.showIcon then
+    tex.print("\\gdef\\showIcon{1}")
+end
+
 
 tex.print("\\gdef\\myname{" .. data.name .. "}") 
 tex.print("\\gdef\\mytitle{" .. data.title .. "}")
@@ -109,6 +115,8 @@ if engLevel.cet6 ~= "" then
 end
 
 \end{luacode}
+
+\gdef\iconAlignWide{1.5em}
 
 % 校徽、姓名、联系方式、大头照 %
 \begin{center}
@@ -157,13 +165,13 @@ end
                 \end{minipage}
             \end{minipage}
         \end{center}
-    \end{minipage}\\[1em]
+    \end{minipage}\\[1.5em]
 \end{center}
 
 \ifdefined\basicInfo
 % 基本信息
 \begin{minipage}{1\textwidth}
-    \large{\textbf{基本信息}}
+    \large{\ifdefined\showIcon \makebox[\iconAlignWide][c]{\faUser} \fi \textbf{基本信息}}
 \end{minipage}
 \rule{\linewidth}{\lineSize}
 \begin{center}
@@ -179,7 +187,7 @@ end
 \ifdefined\educationBackground
 % 教育背景
 \begin{minipage}{1\textwidth}
-    \large{\textbf{教育背景}}
+    \large{\ifdefined\showIcon \makebox[\iconAlignWide][c]{\faGraduationCap} \fi \textbf{教育背景}}
 \end{minipage}
 \rule{\linewidth}{\lineSize}
 \begin{center}
@@ -196,7 +204,7 @@ end
             \raggedright
             \textbf{专业}： \major
             \hfil
-        \end{minipage} \\
+        \end{minipage} \\[0.5em]
         % GPA、加权、排名
         \begin{minipage}{0.2\linewidth}
             \textbf{GPA}： \gpa \hfil
@@ -206,8 +214,8 @@ end
         \end{minipage}
         \begin{minipage}{0.5\linewidth}
             \raggedright
-            \textbf{排名}： \rank \ifdefined\qualified \hspace{2em} \textbf{已确认获取保研资格} \fi  \hfil
-        \end{minipage} \\
+            \textbf{排名}： \rank \ifdefined\qualified \hspace{2em} \textbf{确认可获取保研资格} \fi  \hfil
+        \end{minipage} \\[0.5em]
         % 英语水平
         \ifdefined\showEngLevel
         \begin{minipage}{0.5\linewidth}
@@ -219,7 +227,7 @@ end
             \ifdefined\showCETvi
             \textbf{CET-6} \ifdefined\cetVI ： \cetVI \fi \hfil
             \fi
-        \end{minipage} \\[0.8em]
+        \end{minipage} \\[0.3em]
         \fi
 
         % 课程成绩
@@ -264,7 +272,7 @@ end
 \ifdefined\scientificResearch
 % 科研经历
 \begin{minipage}{1\textwidth}
-    \large{\textbf{科研经历}}
+    \large{\ifdefined\showIcon \makebox[\iconAlignWide][c]{\faFlask} \if\textbf{科研经历}}
 \end{minipage}
 \rule{\linewidth}{\lineSize}
 \begin{center}
@@ -309,7 +317,7 @@ end
                     tex.print("\\end{minipage}\\\\[0.5em]")
                 end
                 tex.print("\\end{minipage}")
-                tex.print("\\\\[0.5em]")
+                tex.print("\\\\[0.3em]")
             end
         \end{luacode}
     \end{minipage}
@@ -319,7 +327,7 @@ end
 \ifdefined\patent
 % 专利
 \begin{minipage}{1\textwidth}
-    \large{\textbf{科研创新}}
+    \large{\ifdefined\showIcon \makebox[\iconAlignWide][c]{\faLightbulb} \fi \textbf{科研创新}}
 \end{minipage}
 \rule{\linewidth}{\lineSize}
 \begin{center}
@@ -358,7 +366,7 @@ end
 \ifdefined\contest
 % 竞赛经历
 \begin{minipage}{1\textwidth}
-    \large{\textbf{竞赛经历}}
+    \large{\ifdefined\showIcon \makebox[\iconAlignWide][c]{\faTrophy} \fi \textbf{竞赛经历}}
 \end{minipage}
 \rule{\linewidth}{\lineSize}
 \begin{center}
@@ -394,7 +402,7 @@ end
 \ifdefined\certificate
 % 荣誉奖项
 \begin{minipage}{1\textwidth}
-    \large{\textbf{荣誉奖项}}
+    \large{\ifdefined\showIcon \makebox[\iconAlignWide][c]{\faAward} \fi \textbf{荣誉奖项}}
 \end{minipage}
 \rule{\linewidth}{\lineSize}
 \begin{center}
@@ -430,7 +438,7 @@ end
 \ifdefined\otherSkill
 % 基本技能
 \begin{minipage}{1\textwidth}
-    \large{\textbf{基本技能}}
+    \large{\ifdefined\showIcon \makebox[\iconAlignWide][c]{\faTools} \fi \textbf{基本技能}}
 \end{minipage}
 \rule{\linewidth}{\lineSize}
 \begin{center}
@@ -455,7 +463,7 @@ end
 \ifdefined\studentJob
 % 学生工作
 \begin{minipage}{1\textwidth}
-    \large{\textbf{学生工作}}
+    \large{\ifdefined\showIcon \makebox[\iconAlignWide][c]{\faBriefcase} \fi \textbf{学生工作}}
 \end{minipage}
 \rule{\linewidth}{\lineSize}
 \begin{center}
@@ -492,7 +500,7 @@ end
 \ifdefined\selfEvaluate
 % 自我评价
 \begin{minipage}{1\textwidth}
-    \large{\textbf{自我评价}}
+    \large{\ifdefined\showIcon \makebox[\iconAlignWide][c]{\faCommentDots} \fi \textbf{自我评价}}
 \end{minipage}
 \rule{\linewidth}{\lineSize}
 \begin{center}
