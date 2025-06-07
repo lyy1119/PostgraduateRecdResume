@@ -5,19 +5,3 @@ theme:
 
 plugins: []
 
-nav:
-  - 关于: About.md
-  - 编译: complie.md
-  - 开始: index.md
-  - 预览: preview.md
-  - 配置:
-    - 配置文件: 配置\configfile.md
-    - 开启特定内容展示: 配置\enableBlock.md
-    - 配置功能简要介绍: 配置\introduction.md
-    - 各板块:
-      - 基本信息: 配置\各板块\basicInfo.md
-      - 竞赛、获奖荣誉与专利: 配置\各板块\certificatePatentAndContest.md
-      - 教育背景: 配置\各板块\educationBackground.md
-      - 科研经历: 配置\各板块\scientificResearch.md
-      - 基本技能、学生工作与自我评价: 配置\各板块\skillStudentJobAndselfEvaluate.md
-
