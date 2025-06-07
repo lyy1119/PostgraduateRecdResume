@@ -8,6 +8,8 @@ on:
 jobs:
   depoly:
     runs-on: ubuntu-22.04
+    permissions:
+      content: write
 
     steps:
       - name: Checkout source code
@@ -26,9 +28,9 @@ jobs:
         run: mkdocs build --clean
 
       - name: Deploy to target branches
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
-          publish_branch: depoly
+          publish_branch: docs-depoly
           force_orphan: true
