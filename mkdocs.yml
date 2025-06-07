@@ -1,0 +1,6 @@
+site_name: PostgraduateRecdResume Doc
+
+theme:
+  name: gitbook
+
+plugins: []
