@@ -6,12 +6,12 @@ on:
       - docs
 
 jobs:
-  build-depoly:
-    runs-on: ubuntu-latest
+  depoly:
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@4
+        uses: actions/checkout@3
 
       - name: Set up Python
         uses: actions/setup-python@v5
