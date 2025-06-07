@@ -1,0 +1,37 @@
+name: Build and Deploy MkDocs
+
+on:
+  push:
+    branches:
+      - docs
+
+jobs:
+  build-depoly:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Build Mkdocs site
+        run: mkdocs build --clean
+
+      - name: Copy CNAME to site/
+        run: cp CNAME site/
+      
+      - name: Deploy to target branches
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: depoly
+          force_orphan: true
