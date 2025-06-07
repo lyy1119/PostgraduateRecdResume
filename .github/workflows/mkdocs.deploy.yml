@@ -25,9 +25,6 @@ jobs:
       - name: Build Mkdocs site
         run: mkdocs build --clean
 
-      - name: Copy CNAME to site/
-        run: cp CNAME site/
-      
       - name: Deploy to target branches
         uses: peaceiris/actions-gh-pages@v3
         with:
