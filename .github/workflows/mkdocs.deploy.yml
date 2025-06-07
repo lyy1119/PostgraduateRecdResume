@@ -8,8 +8,6 @@ on:
 jobs:
   depoly:
     runs-on: ubuntu-22.04
-    permissions:
-      content: write
 
     steps:
       - name: Checkout source code
