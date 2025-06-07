@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>教育背景 - PostgraduateRecdResume Doc</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../../.." target="_blank" class="custom-link">PostgraduateRecdResume Doc</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../../..">开始</a>
+<li class="chapter" data-path="About/">
+<a href="../../../About/">关于</a>
+<li class="chapter" data-path="complie/">
+<a href="../../../complie/">编译</a>
+<li class="chapter" data-path="preview/">
+<a href="../../../preview/">预览</a>
+<li class="header">配置</li>
+
+<li>
+<a href="../../configfile/" class="">配置文件</a>
+</li>
+
+<li>
+<a href="../../enableBlock/" class="">开启特定内容展示</a>
+</li>
+
+<li>
+<a href="../../introduction/" class="">配置功能简要介绍</a>
+</li>
+
+<li>
+<a href="#">各板块</a>
+<ul>
+
+<li>
+<a href="../basicInfo/" class="">基本信息</a>
+</li>
+
+<li>
+<a href="../certificatePatentAndContest/" class="">竞赛、获奖荣誉与专利</a>
+</li>
+
+<li>
+<a href="./" class="active">教育背景</a>
+</li>
+
+<li>
+<a href="../scientificResearch/" class="">科研经历</a>
+</li>
+
+<li>
+<a href="../skillStudentJobAndselfEvaluate/" class="">基本技能、学生工作与自我评价</a>
+</li>
+</ul>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="_1">教育背景</h1>
+<p>教育背景部分的配置在<code>data.json</code>中如下：  </p>
+<pre><code class="language-json">&quot;educationBackground&quot; : {
+        &quot;university&quot; : &quot;中国矿业大学（北京）&quot;,
+        &quot;level&quot;      : &quot;211工程、双一流&quot;,
+        &quot;badge&quot;      : &quot;cumtbBadge.png&quot;,
+        &quot;major&quot;      : &quot;机械工程&quot;,
+        &quot;gpa&quot;        : &quot;4.0&quot;,
+        &quot;grade&quot;      : &quot;90&quot;,
+        &quot;rank&quot;       : &quot;1/100 (1\\%)&quot;,
+        &quot;courses&quot; : [
+            [&quot;课程名称1&quot; , &quot;99&quot;],
+            [&quot;课程名称2&quot;   , &quot;99&quot; ],
+            [&quot;课程名称3&quot;   , &quot;100&quot; ],
+            [&quot;课程名称4&quot; , &quot;99&quot;],
+            [&quot;课程名称5&quot;   , &quot;99&quot; ]
+        ]
+    },
+    &quot;english&quot; : {
+        &quot;cet4&quot; : &quot;600&quot;,
+        &quot;cet6&quot; : &quot;&quot;
+    },
+</code></pre>
+<p>注意，排名中的百分号需要转义，即，需要在前面加<code>\\</code>。  </p>
+<p>英语水平被单独放出来了，但是在关闭教育背景模块展示的时候也不会显示。  </p>
+<p>当英语水平中的成绩为空时，就不会显示具体分数。效果见 <strong>预览</strong> 章节。  </p>
+<h2 id="_2">课程成绩</h2>
+<p>课程成绩采用表格布局，每行三门课程。显示格式为<code>课程名(成绩)</code>，需要注意，最好将长度相等的排在同一列，不然容易导致左右过长与其他内容覆盖。  </p>
+<h2 id="_3">校徽</h2>
+<p>校徽图片需放在项目根目录下，并在上述配置中的<code>educationBackground.badge</code>填写文件名。你也可以填写相对路径或绝对路径。  </p>
+
+
+</section>
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../../js/main.js"></script>
+<script src="../../../js/gitbook.min.js"></script>
+<script src="../../../js/theme.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>编译 - PostgraduateRecdResume Doc</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href=".." target="_blank" class="custom-link">PostgraduateRecdResume Doc</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="..">开始</a>
+<li class="chapter" data-path="About/">
+<a href="../About/">关于</a>
+<li class="chapter active" data-path="complie/">
+<a href="./">编译</a>
+<li class="chapter" data-path="preview/">
+<a href="../preview/">预览</a>
+<li class="header">配置</li>
+
+<li>
+<a href="../%E9%85%8D%E7%BD%AE/configfile/" class="">配置文件</a>
+</li>
+
+<li>
+<a href="../%E9%85%8D%E7%BD%AE/enableBlock/" class="">开启特定内容展示</a>
+</li>
+
+<li>
+<a href="../%E9%85%8D%E7%BD%AE/introduction/" class="">配置功能简要介绍</a>
+</li>
+
+<li>
+<a href="#">各板块</a>
+<ul>
+
+<li>
+<a href="../%E9%85%8D%E7%BD%AE/%E5%90%84%E6%9D%BF%E5%9D%97/basicInfo/" class="">基本信息</a>
+</li>
+
+<li>
+<a href="../%E9%85%8D%E7%BD%AE/%E5%90%84%E6%9D%BF%E5%9D%97/certificatePatentAndContest/" class="">竞赛、获奖荣誉与专利</a>
+</li>
+
+<li>
+<a href="../%E9%85%8D%E7%BD%AE/%E5%90%84%E6%9D%BF%E5%9D%97/educationBackground/" class="">教育背景</a>
+</li>
+
+<li>
+<a href="../%E9%85%8D%E7%BD%AE/%E5%90%84%E6%9D%BF%E5%9D%97/scientificResearch/" class="">科研经历</a>
+</li>
+
+<li>
+<a href="../%E9%85%8D%E7%BD%AE/%E5%90%84%E6%9D%BF%E5%9D%97/skillStudentJobAndselfEvaluate/" class="">基本技能、学生工作与自我评价</a>
+</li>
+</ul>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="_1">编译</h1>
+<p>本项目支持两种编译方式：<code>lualatex</code> 或 <code>Docker</code>。
+选择哪种方式取决于你当前的环境配置👇</p>
+<hr />
+<h2 id="_2">❓我该选哪种编译方式？</h2>
+<blockquote>
+<p>已安装 Tex Live ✅ 或 Docker ✅ 的用户，建议使用现有环境。
+如果你尚未安装任一工具，推荐在 <strong>Windows 下优先尝试 Docker</strong>，因为 Tex Live 的安装过程较为繁琐且耗时⏳。</p>
+</blockquote>
+<hr />
+<h2 id="_3">💻 编译环境准备</h2>
+<p>在开始编译之前，请确认你已具备以下工具（标注⭐为可选）：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>作用说明</th>
+<th>必须性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tex Live</code></td>
+<td>提供 <code>lualatex</code> 编译器（用于非 Docker 编译）</td>
+<td>✅ 必须（如用 texlive 编译）</td>
+</tr>
+<tr>
+<td><code>Docker</code></td>
+<td>提供隔离编译环境，免安装 TeX 套件</td>
+<td>✅ 必须（如用 Docker 编译）</td>
+</tr>
+<tr>
+<td><code>make</code></td>
+<td>一键执行自动化编译命令</td>
+<td>⭐ 可选</td>
+</tr>
+<tr>
+<td><code>git</code></td>
+<td>克隆项目仓库，快速获取代码</td>
+<td>⭐ 可选</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="tex-live">🔧 使用 Tex Live 本地编译</h2>
+<p>首先，你需要下载项目源码，可以通过下载或使用 Git 克隆</p>
+<h3 id="make">🧰 使用 make 一键编译（推荐）</h3>
+<p>确保你已安装 <code>make</code>，然后运行：</p>
+<pre><code class="language-bash">make
+</code></pre>
+<p>该命令会调用 <code>lualatex</code> 编译并自动清理中间文件，非常省心 🧹</p>
+<h3 id="_4">💬 手动命令行编译</h3>
+<p>不想使用 <code>make</code>？也可以手动运行编译命令：</p>
+<pre><code class="language-bash">lualatex resume.tex
+</code></pre>
+<p>请注意，使用此方式不会自动清理中间生成的 <code>.aux</code>、<code>.log</code> 等文件。</p>
+<h2 id="docker">🐳 使用 Docker 编译（推荐给新用户）</h2>
+<p>🚧 <em>功能开发中……</em> 🚧
+将支持一键 Docker 编译，无需安装 Tex Live！</p>
+
+
+</section>
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>开启特定内容展示 - PostgraduateRecdResume Doc</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../.." target="_blank" class="custom-link">PostgraduateRecdResume Doc</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../..">开始</a>
+<li class="chapter" data-path="About/">
+<a href="../../About/">关于</a>
+<li class="chapter" data-path="complie/">
+<a href="../../complie/">编译</a>
+<li class="chapter" data-path="preview/">
+<a href="../../preview/">预览</a>
+<li class="header">配置</li>
+
+<li>
+<a href="../configfile/" class="">配置文件</a>
+</li>
+
+<li>
+<a href="./" class="active">开启特定内容展示</a>
+</li>
+
+<li>
+<a href="../introduction/" class="">配置功能简要介绍</a>
+</li>
+
+<li>
+<a href="#">各板块</a>
+<ul>
+
+<li>
+<a href="../%E5%90%84%E6%9D%BF%E5%9D%97/basicInfo/" class="">基本信息</a>
+</li>
+
+<li>
+<a href="../%E5%90%84%E6%9D%BF%E5%9D%97/certificatePatentAndContest/" class="">竞赛、获奖荣誉与专利</a>
+</li>
+
+<li>
+<a href="../%E5%90%84%E6%9D%BF%E5%9D%97/educationBackground/" class="">教育背景</a>
+</li>
+
+<li>
+<a href="../%E5%90%84%E6%9D%BF%E5%9D%97/scientificResearch/" class="">科研经历</a>
+</li>
+
+<li>
+<a href="../%E5%90%84%E6%9D%BF%E5%9D%97/skillStudentJobAndselfEvaluate/" class="">基本技能、学生工作与自我评价</a>
+</li>
+</ul>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="_1">开启特定内容展示</h1>
+<p>对于每个人所能展示和想展示的内容不同，代码编写了多个展示部分。通过将简历中的各部分内容分成了单独的块，<code>tex</code>代码通过判断某个标签是否被定义来选择是否渲染某个部分。这个功能对应<code>data.json</code>中的如下片段：  </p>
+<pre><code class="language-json">&quot;settings&quot; :{
+        &quot;qualified&quot;           : true,
+        &quot;showEngLevel&quot;        : true,
+        &quot;showCET4&quot;            : true,
+        &quot;showCET6&quot;            : true,
+        &quot;personalPhoto&quot;       : true,
+        &quot;noUniversityBadge&quot;   : false,
+        &quot;horizonlineSize&quot;     : &quot;0.5pt&quot;,
+        &quot;basicInfo&quot;           : true,
+        &quot;educationBackground&quot; : true,
+        &quot;scientificResearch&quot;  : true,
+        &quot;patent&quot;              : true,
+        &quot;contest&quot;             : true,
+        &quot;certificate&quot;         : true,
+        &quot;otherSkill&quot;          : true,
+        &quot;studentJob&quot;          : true,
+        &quot;selfEvaluate&quot;        : true,
+        &quot;showIcon&quot;            : true
+    },
+</code></pre>
+<h2 id="_2">功能说明</h2>
+<table>
+<thead>
+<tr>
+<th>键名</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>qualified</code></td>
+<td>将会在简历中排名后显示: <strong>确认可获取保研资格</strong> 字段</td>
+</tr>
+<tr>
+<td><code>showEngLevel</code></td>
+<td>在教育背景块显示<code>CET4</code>和<code>CET6</code></td>
+</tr>
+<tr>
+<td><code>showCET4</code></td>
+<td>在<code>showEngLevel</code>为<code>true</code>时，显示CET4及成绩，若成绩为空字符串，则不显示具体分数</td>
+</tr>
+<tr>
+<td><code>showCET6</code></td>
+<td>在<code>showEngLevel</code>为<code>true</code>时，显示CET6及成绩，若成绩为空字符串，则不显示具体分数</td>
+</tr>
+<tr>
+<td><code>personalPhoto</code></td>
+<td>展示证件照</td>
+</tr>
+<tr>
+<td><code>noUniversityBadge</code></td>
+<td>不显示校徽</td>
+</tr>
+<tr>
+<td><code>horizonlineSize</code></td>
+<td>水平线粗细，建议0.5pt，如果需要调整，可以更改</td>
+</tr>
+<tr>
+<td><code>basicInfo</code></td>
+<td>展示<strong>基本信息</strong>板块</td>
+</tr>
+<tr>
+<td><code>educationBackground</code></td>
+<td>展示 <strong>教育背景</strong> 板块</td>
+</tr>
+<tr>
+<td><code>scientificResearch</code></td>
+<td>展示 <strong>科研经历</strong> 板块</td>
+</tr>
+<tr>
+<td><code>patent</code></td>
+<td>展示 <strong>科研创新</strong> 板块，及专利</td>
+</tr>
+<tr>
+<td><code>contest</code></td>
+<td>展示 <strong>竞赛经历</strong> 板块</td>
+</tr>
+<tr>
+<td><code>certificate</code></td>
+<td>展示 <strong>荣誉奖项</strong> 板块</td>
+</tr>
+<tr>
+<td><code>otherSkill</code></td>
+<td>展示 <strong>其他技能</strong> 板块</td>
+</tr>
+<tr>
+<td><code>studentJob</code></td>
+<td>展示 <strong>学生工作</strong> 板块</td>
+</tr>
+<tr>
+<td><code>selfEvaluate</code></td>
+<td>展示 <strong>自我评价</strong> 板块</td>
+</tr>
+<tr>
+<td><code>showIcon</code></td>
+<td>展示每个板块标题前的图标</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../js/main.js"></script>
+<script src="../../js/gitbook.min.js"></script>
+<script src="../../js/theme.min.js"></script>
+</body>
+</html>
